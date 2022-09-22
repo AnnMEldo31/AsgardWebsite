@@ -1,0 +1,1 @@
+web: gunicorn AsgardWebsite.wsgi:application
