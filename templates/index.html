@@ -1,0 +1,79 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">   
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Asgard</title>
+  </head>
+  <body>
+    <div id="header-container">
+        <center><h1 id="header">A Website about Asgard</h1></center>
+    </div>
+
+    <!-- Object name list -->
+    <div id="button-box" class="button-container">
+    {% for object in obj %}
+        <button class="content-buttons" onclick="showText(event, {{ object.id }})">
+            {{ object.name }}
+        </button>
+    {% endfor %}
+        <a href="javascript:void(0);" class="icon" onclick="responsiveDropDown()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <!-- Objects text -->
+    {% for object in obj %}
+    <div id="{{ object.id }}" class="textbox">
+        {{ object.text }}
+    </div>
+    {% endfor %}
+
+    <script>
+        function showText(e, x) {
+            var i, textbox, contentbuttons;
+            
+            if (e.currentTarget.classList.contains("active") ) {
+                console.log("It is already active, pick up")
+                e.currentTarget.className = e.currentTarget.className.replace(" active", "");
+                document.getElementById(x).style.display = "none";
+                return;
+            }
+
+            textbox = document.getElementsByClassName("textbox");
+            for (i = 0; i < textbox.length; i++) {
+                textbox[i].style.display = "none";
+            }
+
+            contentbuttons = document.getElementsByClassName("content-buttons");
+            for (i = 0; i < contentbuttons.length; i++) {
+                contentbuttons[i].className = contentbuttons[i].className.replace(" active", "");
+            }
+
+            document.getElementById(x).style.display = "block";
+            e.currentTarget.className += " active";
+        }
+
+        function responsiveDropDown() {
+            console.log("Inside function");
+            var x = document.getElementById("button-box");
+            if (x.className === "button-container") {
+                x.className += " responsive";
+                console.log("Drop down");
+            } else {
+                x.className = "button-container";
+                console.log("Pick up");
+                textbox = document.getElementsByClassName("textbox");
+                for (i = 0; i < textbox.length; i++) {
+                    textbox[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+  </body>
+</html>

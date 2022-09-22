@@ -1,0 +1,87 @@
+body {
+    font: 1em sans-serif;
+}
+
+#header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.button-container {
+    overflow: hidden;
+    border: 1px solid green;
+    background-color: green;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-container:before, .button-container:after {
+    content: "";
+}
+
+.button-container button {
+    background-color: green;
+    font-size: large;
+    color: white;
+    float:none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s; 
+}
+
+.button-container button:hover {
+    background-color: limegreen;
+}
+
+.button-container button.active {
+    background-color: darkgreen;
+}
+
+.button-container .icon {
+    display: none;
+}
+
+.textbox {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    font-size: larger;
+    font-family: Arial;
+}
+
+@media screen and (max-width: 600px) {
+    .button-container {
+        height: 40px;
+    }
+    .button-container button {display: none;}
+    .button-container a.icon {
+      float: right;
+      padding: 8pt;
+      display: block;
+      color: white;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .button-container.responsive {
+        display: block;
+        position: relative;
+        height: fit-content;
+    }
+    .button-container.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .button-container.responsive button {
+      display: block;
+      font-size: small;
+      text-align: left;
+      width: 100%;
+    }
+    .textbox {
+        font-size: small;
+    }
+  }
